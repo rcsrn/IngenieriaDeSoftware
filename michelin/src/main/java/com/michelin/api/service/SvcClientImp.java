@@ -6,8 +6,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.michelin.api.dto.ApiResponse;
@@ -39,8 +44,11 @@ public class SvcClientImp implements SvcClient {
     @Autowired
     RepoOrder repoOrder;
 
+    @Autowired
+    JavaMailSender emailSender;
+    
     @Override
-    public ApiResponse registerClient(ClientDto in) {
+    public ApiResponse registerClient(ClientDto in) throws MessagingException {
         
         Client client = repo.findByEmail(in.getEmail());
 
@@ -55,7 +63,8 @@ public class SvcClientImp implements SvcClient {
         } catch (ParseException pe) {
             throw new ApiException(HttpStatus.BAD_REQUEST, "Formato de fecha incorrecto");
         }
-        return new ApiResponse("registro exitoso");
+        sendPasswordEmail(in.getEmail(), password);
+        return new ApiResponse("registro exitoso, su contraseña se ha enviado su correo.");
     }
 
     private String generateNewPassword(int len) {
@@ -68,6 +77,20 @@ public class SvcClientImp implements SvcClient {
         }
         return sb.toString();
     }
+
+    private void sendPasswordEmail(String email, String password) throws MessagingException {
+
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setTo(email);
+        helper.setSubject("Michelin: Nueva contraseña generada!");
+        helper.setText("Su nueva contraseña es: " + password);
+
+        emailSender.send(message);
+    }
+
+
 
     @Override
     public ApiResponse updatePassword(PasswordDto in, Integer client_id) {

@@ -2,6 +2,7 @@ package com.michelin.api.controller;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class CtrlClient {
     SvcClient svc;
 
     @PostMapping("/register") 
-    public ResponseEntity<ApiResponse> registerClient(@Valid @RequestBody ClientDto client, BindingResult bindingResult) {
+    public ResponseEntity<ApiResponse> registerClient(@Valid @RequestBody ClientDto client, BindingResult bindingResult) throws MessagingException {
         if (bindingResult.hasErrors()) {
             throw new ApiException(HttpStatus.BAD_REQUEST, bindingResult.getAllErrors().get(0).getDefaultMessage());
         }
