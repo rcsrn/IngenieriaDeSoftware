@@ -41,7 +41,6 @@ public class Product {
     @JoinColumn(name = "administrator_id")
     private Administrator administrator;
 
-
     public Integer getProductId() {
         return product_id;
     }

@@ -58,5 +58,4 @@ public class CtrlClient {
     @PathVariable Integer client_id) {
         return new ResponseEntity<>(svc.createOrder(product_id, client_id), HttpStatus.OK);
     }
-    
 }
