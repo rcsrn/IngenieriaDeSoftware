@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.michelin.api.dto.ApiResponse;
 import com.michelin.api.dto.ClientDto;
+import com.michelin.api.dto.LoginDto;
 import com.michelin.api.dto.PasswordDto;
 import com.michelin.api.entity.Client;
 import com.michelin.api.entity.Product;
@@ -93,13 +94,18 @@ public class SvcClientImp implements SvcClient {
 
 
     @Override
-    public ApiResponse updatePassword(PasswordDto in, Integer client_id) {
+    public ApiResponse updatePassword(PasswordDto in, Integer client_id) throws MessagingException {
         Client client = repo.findByClientId(client_id);
         if (client == null) {
             throw new ApiException(HttpStatus.NOT_FOUND, "El cliente no existe");
         }
         repo.updatePassword(in.getNewPassword(), client_id);
+
+        String email = client.getEmail();
+        sendPasswordEmail(email, in.getNewPassword());
+
         return new ApiResponse("Contraseña actualizada");
+
     }
 
     public List<Product> getAllProducts() {
@@ -125,5 +131,21 @@ public class SvcClientImp implements SvcClient {
        repoOrder.createSale(4, 5, client_id);
 
         return new ApiResponse("pedido en proceso");   
+    }
+
+    @Override
+    public ApiResponse login(LoginDto in) {
+        Client client = repo.findByEmail(in.getEmail());
+        if (client == null) {
+            throw new ApiException(HttpStatus.NOT_FOUND, "email incorrecto");
+        }
+
+        System.out.println(client.getPassword().equals(in.getPassword()));
+
+        if (!client.getPassword().equals(in.getPassword())) {
+            throw new ApiException(HttpStatus.NOT_FOUND, "contraseña incorrecta");
+        }
+
+        return new ApiResponse("exito");
     }
 }

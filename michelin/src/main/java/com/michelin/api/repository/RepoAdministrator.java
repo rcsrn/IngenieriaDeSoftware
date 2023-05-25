@@ -14,4 +14,8 @@ public interface RepoAdministrator extends JpaRepository<Administrator,Integer> 
     @Query(value = "SELECT * FROM administrator WHERE administrator_id = :administrator_id", nativeQuery = true)
     Administrator findByAdminId(@Param("administrator_id") Integer administrator_id);
 
+    @Transactional
+    @Query(value = "SELECT * FROM administrator WHERE email = :email", nativeQuery = true)
+    Administrator findByEmail(@Param("email") String email);
+
 }
