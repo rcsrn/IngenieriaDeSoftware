@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Michelin Dashboard</title>
+    <link rel="shortcut icon" href="../static/images/beer.png" th:href="@{/images/beer.png}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/dashboardstyle.css">
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+          <a class="navbar-brand" href="#">Navbar</a>
+                <img src="../static/images/78bearnatural.jpg" th:src="@{/images/78bearnatural.jpg}" width="25px" height="auto" alt="michelinlogo">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link" href="#">Features</a>
+              <a class="nav-link" href="#">Pricing</a>
+              <a class="nav-link me-5" href="#">Template</a>
+            </div>
+            <a id="boton_cerrar_sesion" href="#" class="btn btn-outline-secondary shadow-sm d-sm d-block me-5">Logout</a>
+            <a id="boton_actualizar_contrasena" href="#" class="btn btn-outline-secondary shadow-sm d-sm d-block">Update password</a>
+           </div>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="text">
+                        Bienvenido a Michelin
+                    </div>
+                    <div class="buttons">
+                        <a href="#" class="btn btn-primary">Boton extra</a>
+                        <a href="#" class="btn btn-outline-secondary ms-3">Live button</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="../static/images/proxyimage.jfif" th:src="@{/images/proxyimage.jfif}" alt="placeholderimg" class="w-100">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="setup">
+        <div class="container">
+            <div class="text-header text-center">
+                <h3>Comienza con Michelin</h3>
+                <p>Y michelea a lo grande</p>
+            </div>
+            <div class="items text-center">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="icons">
+                            <img src="../static/images/checked.png" th:src="@{/images/checked.png}" width="10px" height="auto" alt="icons">
+                        </div>
+                        <div class="desc">
+                            <h5>Checked img</h5>
+                            <p>placeholder1</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="icons">
+                            <img src="../static/images/eco.png" th:src="@{/images/eco.png}" width="10px" height="auto" alt="icons">
+                        </div>
+                        <div class="desc">
+                            <h5>Eco img</h5>
+                            <p>placeholder2</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="icons">
+                            <img src="../static/images/arrows.png" th:src="@{/images/arrows.png}" width="10px" height="auto" alt="icons">
+                        </div>
+                        <div class="desc">
+                            <h5>Arrows img</h5>
+                            <p>placeholder3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="information">
+        <div class="container">
+            <div class="row info-1">
+                <div class="col-md-6">
+                    <div class="text-information">
+                        <h5>placeholdercomment</h5>
+                        <p>placeholdera</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="../static/images/proxyimage1.jfif" th:src="@{/images/proxyimage1.jfif}" alt="img-1" class="w-100">
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row row-cols-1 row-cols-lg-5 g-2 g-lg-3">
+                        <div class="col-md-3">
+                            <div>
+                                <small>
+                                    <a href="#" class="text-decoration-none">Home</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <small>
+                                    <a href="#" class="text-decoration-none">Other link</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <small>
+                                    <a href="#" class="text-decoration-none">Other link</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <small>
+                                    <a href="#" class="text-decoration-none">Other link</a>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <small>
+                                    <a href="#" class="text-decoration-none">Other link</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="copy">
+                    &copy; 2023 Michelin
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="../static/js/dashbscript-0.1.js"></script>
+  </body>
+</html>

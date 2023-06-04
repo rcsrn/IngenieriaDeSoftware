@@ -46,7 +46,8 @@ public class CtrlAdmin {
      */
 
     @PostMapping("/register")
-    public ResponseEntity<ApiResponse> registerSalesman(@Valid @RequestBody SalesmanDto in, BindingResult bindingResult) {
+    public ResponseEntity<ApiResponse> registerSalesman(@Valid @RequestBody SalesmanDto in,
+            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ApiException(HttpStatus.BAD_REQUEST, bindingResult.getAllErrors().get(0).getDefaultMessage());
         }
@@ -79,7 +80,7 @@ public class CtrlAdmin {
 
     @PostMapping("/products/add/{administrator_id}")
     public ResponseEntity<ApiResponse> addProduct(@Valid @RequestBody ProductDto product, BindingResult bindingResult,
-    @PathVariable Integer administrator_id) {
+            @PathVariable Integer administrator_id) {
         if (bindingResult.hasErrors()) {
             throw new ApiException(HttpStatus.BAD_REQUEST, bindingResult.getAllErrors().get(0).getDefaultMessage());
         }
@@ -88,14 +89,14 @@ public class CtrlAdmin {
     }
 
     @PutMapping("/product/update/{product_id}")
-    public ResponseEntity<ApiResponse> updateProduct(@PathVariable Integer product_id, @RequestBody ProductDto product) {
+    public ResponseEntity<ApiResponse> updateProduct(@PathVariable Integer product_id,
+            @RequestBody ProductDto product) {
         return new ResponseEntity<>(svc.updateProduct(product_id, product), HttpStatus.OK);
     }
-    
+
     @DeleteMapping("/product/delete/{product_id}")
     public ResponseEntity<ApiResponse> deleteProduct(@PathVariable Integer product_id) {
         return new ResponseEntity<>(svc.deleteProduct(product_id), HttpStatus.OK);
     }
 
 }
-

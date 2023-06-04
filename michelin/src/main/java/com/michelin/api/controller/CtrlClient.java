@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.michelin.api.dto.ApiResponse;
 import com.michelin.api.dto.ClientDto;
-import com.michelin.api.dto.LoginDto;
 import com.michelin.api.dto.PasswordDto;
 import com.michelin.api.entity.Product;
 import com.michelin.api.service.SvcClient;
@@ -61,8 +60,4 @@ public class CtrlClient {
         return new ResponseEntity<>(svc.createOrder(product_id, client_id), HttpStatus.OK);
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<ApiResponse> login(@Valid @RequestBody LoginDto in, BindingResult bindingResult) { 
-        return new ResponseEntity<>(svc.login(in), HttpStatus.OK);
-    }
 }

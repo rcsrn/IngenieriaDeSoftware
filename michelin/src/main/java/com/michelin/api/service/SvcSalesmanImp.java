@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.michelin.api.dto.ApiResponse;
+import com.michelin.api.dto.LoginDto;
 import com.michelin.api.dto.PasswordDto;
 import com.michelin.api.entity.Salesman;
 import com.michelin.api.repository.RepoSalesman;
@@ -24,5 +25,25 @@ public class SvcSalesmanImp implements SvcSalesman {
         }
         repo.updatePassword(in.getNewPassword(), salesman_id);
         return new ApiResponse("Contraseña actualizada");
+    }
+
+
+    @Override
+    public ApiResponse loginSalesman(LoginDto in){
+
+       Salesman salesman = repo.findByEmail(in.getEmail());
+
+       if(salesman == null){
+           return null;
+       }
+
+       String passwordRepo = salesman.getPassword();
+       String passwordIn =in.getPassword();
+
+       if(!passwordRepo.equals(passwordIn)){
+           throw new ApiException(HttpStatus.BAD_REQUEST, "contraseña es incorrecta");
+       }
+
+       return new ApiResponse("login exitoso");
     }
 }

@@ -32,4 +32,5 @@ public class CtrlSalesman {
         }
         return new ResponseEntity<>(svc.updatePassword(in, salesman_id), HttpStatus.OK);
     }
+
 }
